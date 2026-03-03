@@ -2,1351 +2,1484 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Dinesh M – Mobile Applications Developer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dinesh M – Senior Mobile Application Developer</title>
   <meta
     name="description"
-    content="Portfolio of Dinesh M – Mobile Applications Developer with 11+ years of experience in iOS, Android, and Flutter."
+    content="Portfolio of Dinesh M – Senior Mobile Application Developer (11+ years) across iOS, Android, Flutter, React Native. Real-time apps, WebRTC, BLE/IoT, Firebase, Node.js, Django."
   />
 
+  <!-- Premium-ish system font stack -->
   <style>
     :root {
-      --bg: #050816;
-      --bg-alt: #0b1020;
-      --card: #111827;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --border: #1f2937;
-      --radius-lg: 20px;
+      /* Dark theme (default) */
+      --bg: #070A12;
+      --bg2: #0B1020;
+      --surface: rgba(255, 255, 255, 0.05);
+      --surface2: rgba(255, 255, 255, 0.07);
+      --border: rgba(255, 255, 255, 0.10);
+      --border2: rgba(255, 255, 255, 0.14);
+      --text: rgba(255, 255, 255, 0.92);
+      --muted: rgba(255, 255, 255, 0.65);
+      --muted2: rgba(255, 255, 255, 0.50);
+
+      --accent: #38BDF8;
+      --accent2: #22C55E;
+      --purple: #A855F7;
+      --warn: #F59E0B;
+
+      --shadow: 0 18px 55px rgba(0, 0, 0, 0.55);
+      --shadow2: 0 10px 28px rgba(0, 0, 0, 0.35);
+
+      --radius-lg: 18px;
       --radius-xl: 26px;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.9);
-      --shadow-chip: 0 0 0 1px rgba(148, 163, 184, 0.22);
-      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
+
+      --container: 1120px;
+
+      --font: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display",
+              "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    /* Light theme overrides */
+    [data-theme="light"] {
+      --bg: #F7F8FC;
+      --bg2: #FFFFFF;
+      --surface: rgba(2, 6, 23, 0.04);
+      --surface2: rgba(2, 6, 23, 0.06);
+      --border: rgba(2, 6, 23, 0.10);
+      --border2: rgba(2, 6, 23, 0.14);
+      --text: rgba(2, 6, 23, 0.90);
+      --muted: rgba(2, 6, 23, 0.62);
+      --muted2: rgba(2, 6, 23, 0.50);
+      --shadow: 0 18px 55px rgba(2, 6, 23, 0.12);
+      --shadow2: 0 10px 28px rgba(2, 6, 23, 0.10);
     }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
     body {
-      font-family: var(--font-main);
-      background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #000 100%);
+      font-family: var(--font);
       color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(56, 189, 248, 0.25), transparent 55%),
+        radial-gradient(900px 520px at 95% 10%, rgba(168, 85, 247, 0.18), transparent 55%),
+        radial-gradient(1000px 600px at 45% 110%, rgba(34, 197, 94, 0.12), transparent 58%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 60%, var(--bg) 100%);
       line-height: 1.6;
+      letter-spacing: 0.2px;
       scroll-behavior: smooth;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    /* Layout */
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
+    /* Container */
     .container {
       width: 100%;
-      max-width: 1080px;
+      max-width: var(--container);
       margin: 0 auto;
       padding: 0 1.25rem;
     }
 
+    /* Top bar / Nav */
     header {
       position: sticky;
       top: 0;
-      z-index: 50;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(
-        to bottom,
-        rgba(2, 6, 23, 0.9),
-        rgba(15, 23, 42, 0.75),
-        transparent
-      );
-      border-bottom: 1px solid rgba(31, 41, 55, 0.8);
+      z-index: 60;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(7, 10, 18, 0.80), rgba(7, 10, 18, 0.55), transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    [data-theme="light"] header {
+      background: linear-gradient(to bottom, rgba(247, 248, 252, 0.92), rgba(247, 248, 252, 0.70), transparent);
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.9rem 0;
+      padding: 0.95rem 0;
+      gap: 1rem;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 0.55rem;
+      gap: 0.75rem;
+      min-width: 220px;
     }
 
-    .brand-avatar {
-      width: 32px;
-      height: 32px;
+    .avatar {
+      width: 38px;
+      height: 38px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 0, #38bdf8, #0f172a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
+      padding: 2px;
+      background: conic-gradient(from 160deg, var(--accent), var(--accent2), var(--purple), var(--accent));
+      box-shadow: 0 18px 40px rgba(56, 189, 248, 0.28);
+    }
+    .avatar > div {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 30% 0, rgba(255,255,255,0.10), rgba(0,0,0,0.20));
+      border: 1px solid var(--border2);
+      font-weight: 800;
+      letter-spacing: 0.06em;
       font-size: 0.95rem;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.35);
     }
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-name {
-      font-size: 0.95rem;
-      letter-spacing: 0.04em;
-      font-weight: 600;
-    }
-
-    .brand-role {
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .brand-name { font-weight: 750; font-size: 0.95rem; letter-spacing: 0.02em; }
+    .brand-role { font-size: 0.78rem; color: var(--muted); margin-top: 0.18rem; }
 
     .nav-links {
       display: flex;
-      gap: 1.5rem;
-      font-size: 0.85rem;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-
     .nav-links a {
-      position: relative;
+      font-size: 0.86rem;
       color: var(--muted);
+      position: relative;
+      padding: 0.25rem 0.2rem;
     }
-
     .nav-links a::after {
       content: "";
       position: absolute;
       left: 0;
-      bottom: -0.3rem;
-      width: 0;
+      bottom: -0.15rem;
+      width: 0%;
       height: 2px;
       border-radius: 999px;
-      background: linear-gradient(to right, #38bdf8, #22c55e);
-      transition: width 0.25s ease;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transition: width 0.22s ease;
+      opacity: 0.9;
     }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
 
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    main {
-      flex: 1;
-      padding: 2.5rem 0 3.5rem;
-    }
-
-    section {
-      padding: 3.5rem 0;
-    }
-
-    section:first-of-type {
-      padding-top: 2.5rem;
-    }
-
-    .section-header {
-      margin-bottom: 1.75rem;
-    }
-
-    .section-kicker {
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.45rem;
-    }
-
-    .section-title {
-      font-size: 1.55rem;
-      font-weight: 650;
-    }
-
-    .section-subtitle {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-top: 0.4rem;
-    }
-
-    /* Hero */
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    .hero-heading {
-      font-size: clamp(2.1rem, 3vw, 2.6rem);
-      line-height: 1.1;
-      margin-bottom: 0.9rem;
-    }
-
-    .hero-highlight {
-      background: linear-gradient(to right, #38bdf8, #22c55e);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-badge-row {
+    .nav-actions {
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
       gap: 0.6rem;
-      margin-bottom: 0.9rem;
-    }
-
-    .badge {
-      font-size: 0.75rem;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      color: var(--muted);
-      background: radial-gradient(
-        circle at top left,
-        rgba(56, 189, 248, 0.16),
-        rgba(15, 23, 42, 0.8)
-      );
-      box-shadow: var(--shadow-chip);
-    }
-
-    .badge.accent {
-      border-color: rgba(56, 189, 248, 0.8);
-      background: radial-gradient(
-        circle at top left,
-        rgba(56, 189, 248, 0.28),
-        rgba(15, 23, 42, 0.9)
-      );
-      color: #e0f2fe;
-      font-weight: 500;
-    }
-
-    .hero-text {
-      font-size: 0.96rem;
-      color: var(--muted);
-      margin-bottom: 1.3rem;
-      max-width: 36rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      align-items: center;
+      min-width: 220px;
     }
 
     .btn {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      cursor: pointer;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      padding: 0.55rem 1.1rem;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      cursor: pointer;
-      background: transparent;
-      color: var(--text);
-      transition: background 0.18s ease, transform 0.12s ease,
-        box-shadow 0.18s ease, border-color 0.18s ease;
+      gap: 0.5rem;
+      transition: transform 0.12s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: none;
+      white-space: nowrap;
     }
-
+    .btn:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--border2);
+      box-shadow: var(--shadow2);
+    }
     .btn-primary {
       border: none;
-      background: radial-gradient(circle at 20% 0, #38bdf8, #0ea5e9, #0f172a);
-      box-shadow: 0 14px 45px rgba(56, 189, 248, 0.45);
-      font-weight: 600;
+      background: radial-gradient(circle at 20% 0, rgba(56, 189, 248, 0.95), rgba(14, 165, 233, 0.88), rgba(2, 6, 23, 0.10));
+      color: #03121a;
+      font-weight: 750;
+      box-shadow: 0 18px 50px rgba(56, 189, 248, 0.35);
     }
+    [data-theme="light"] .btn-primary { color: #041018; }
+    .btn-primary:hover { box-shadow: 0 22px 70px rgba(56, 189, 248, 0.50); }
 
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 60px rgba(56, 189, 248, 0.7);
-    }
-
-    .btn-outline:hover {
-      background: rgba(15, 23, 42, 0.85);
-      border-color: rgba(148, 163, 184, 0.8);
-    }
-
-    .btn span.icon {
+    .icon {
       font-size: 1rem;
       line-height: 1;
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-top: 1.2rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .hero-meta-item span {
-      display: block;
-    }
-
-    .hero-meta-label {
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 0.7rem;
-      color: #6b7280;
-      margin-bottom: 0.15rem;
-    }
-
-    .hero-meta-value {
-      color: #e5e7eb;
-      font-weight: 500;
-    }
-
-    .hero-right {
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .hero-card {
-      position: relative;
-      width: 100%;
-      max-width: 360px;
-      border-radius: var(--radius-xl);
-      background: radial-gradient(circle at top left, #1e293b, #020617);
-      box-shadow: var(--shadow-soft);
-      padding: 1.25rem 1.3rem 1.4rem;
-      border: 1px solid rgba(148, 163, 184, 0.32);
-      overflow: hidden;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(
-        circle at top left,
-        rgba(56, 189, 248, 0.16),
-        transparent 55%
-      );
       opacity: 0.95;
-      pointer-events: none;
     }
 
-    .hero-card-header {
-      display: flex;
+    /* Mobile menu button */
+    .menu-btn { display: none; }
+
+    /* Sections */
+    main { padding: 2.2rem 0 3.5rem; }
+    section { padding: 3.25rem 0; }
+
+    .section-head { margin-bottom: 1.4rem; }
+    .kicker {
+      display: inline-flex;
+      gap: 0.55rem;
       align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.9rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-card-avatar {
-      width: 54px;
-      height: 54px;
-      border-radius: 999px;
-      background: conic-gradient(
-        from 160deg,
-        #38bdf8,
-        #22c55e,
-        #a855f7,
-        #38bdf8
-      );
-      padding: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-card-avatar-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: inherit;
-      background: radial-gradient(circle at 30% 0, #1f2937, #020617);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #e5e7eb;
-    }
-
-    .hero-card-title {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-    }
-
-    .hero-card-name {
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .hero-card-role {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       color: var(--muted);
     }
+    .kicker .dot {
+      width: 7px; height: 7px; border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.10);
+    }
 
-    .hero-card-chip-row {
+    .title {
+      margin-top: 0.5rem;
+      font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+      letter-spacing: -0.02em;
+      font-weight: 820;
+      line-height: 1.2;
+    }
+    .subtitle {
+      margin-top: 0.5rem;
+      color: var(--muted);
+      max-width: 64ch;
+      font-size: 0.98rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+      gap: 2rem;
+      align-items: stretch;
+      padding-top: 0.4rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.15rem, 3.2vw, 2.85rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      font-weight: 880;
+    }
+    .grad {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      margin-top: 0.95rem;
+      color: var(--muted);
+      font-size: 1.02rem;
+      max-width: 62ch;
+    }
+
+    .badges {
+      margin-top: 1rem;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 0.75rem;
-      position: relative;
-      z-index: 1;
+      gap: 0.55rem;
     }
-
-    .hero-chip {
-      font-size: 0.7rem;
-      padding: 0.18rem 0.5rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: #d1d5db;
-    }
-
-    .hero-card-body {
+    .badge {
       font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.9rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-card-metrics {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.65rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .metric-card {
-      border-radius: 14px;
-      background: rgba(15, 23, 42, 0.92);
-      padding: 0.45rem 0.5rem;
-      border: 1px solid rgba(30, 64, 175, 0.8);
-      text-align: left;
-    }
-
-    .metric-label {
-      font-size: 0.65rem;
-      color: #9ca3af;
-      margin-bottom: 0.1rem;
-    }
-
-    .metric-value {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #e5e7eb;
-    }
-
-    /* Grid & cards */
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.6rem;
-    }
-
-    .card {
-      border-radius: var(--radius-lg);
-      background: linear-gradient(
-          135deg,
-          rgba(15, 23, 42, 0.95),
-          rgba(2, 6, 23, 0.98)
-        ),
-        radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), transparent);
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
       border: 1px solid var(--border);
-      padding: 1.1rem 1.05rem 1.1rem;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
-    }
-
-    .card h3 {
-      font-size: 1rem;
-      margin-bottom: 0.45rem;
-    }
-
-    .card p {
-      font-size: 0.86rem;
+      background: rgba(255, 255, 255, 0.04);
       color: var(--muted);
-      margin-bottom: 0.5rem;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset;
     }
-
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.4rem;
+    .badge.accent {
+      border-color: rgba(56, 189, 248, 0.55);
+      background: rgba(56, 189, 248, 0.12);
+      color: rgba(224, 242, 254, 0.95);
+      font-weight: 650;
     }
+    [data-theme="light"] .badge.accent { color: rgba(2, 6, 23, 0.82); }
 
-    .chip {
-      font-size: 0.72rem;
-      padding: 0.18rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      color: #cbd5f5;
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    .chip.soft {
-      background: var(--accent-soft);
-      border-color: rgba(56, 189, 248, 0.6);
-      color: #e0f2fe;
-    }
-
-    .card-meta {
-      font-size: 0.78rem;
-      color: #9ca3af;
-      margin-bottom: 0.45rem;
-    }
-
-    /* Lists */
-
-    .list {
-      list-style: none;
-      padding-left: 0;
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
-    .list li {
-      margin-bottom: 0.3rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-    }
-
-    .list-bullet {
-      width: 6px;
-      height: 6px;
-      margin-top: 0.37rem;
-      border-radius: 999px;
-      background: linear-gradient(to right, #38bdf8, #22c55e);
-      flex-shrink: 0;
-    }
-
-    /* Experience */
-
-    .experience-item {
-      margin-bottom: 1.3rem;
-      padding-bottom: 0.85rem;
-      border-bottom: 1px dashed rgba(31, 41, 55, 0.8);
-    }
-
-    .experience-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.6rem;
-      align-items: baseline;
-      margin-bottom: 0.2rem;
-    }
-
-    .experience-role {
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    .experience-company {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .experience-date {
-      font-size: 0.8rem;
-      color: #9ca3af;
-    }
-
-    /* Projects */
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.25rem;
-    }
-
-    .project-card {
-      border-radius: var(--radius-lg);
-      background: radial-gradient(
-          circle at top left,
-          rgba(56, 189, 248, 0.18),
-          transparent 55%
-        ),
-        linear-gradient(
-          145deg,
-          rgba(15, 23, 42, 0.97),
-          rgba(2, 6, 23, 0.99)
-        );
-      border: 1px solid rgba(30, 64, 175, 0.9);
-      padding: 0.95rem 0.95rem 1rem;
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.95);
-    }
-
-    .project-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 0.15rem;
-    }
-
-    .project-tagline {
-      font-size: 0.78rem;
-      color: #9ca3af;
-      margin-bottom: 0.35rem;
-    }
-
-    .project-desc {
-      font-size: 0.83rem;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .project-role {
-      font-size: 0.78rem;
-      color: #9ca3af;
-      margin-bottom: 0.4rem;
-    }
-
-    .project-links {
-      margin-top: 0.35rem;
-      font-size: 0.78rem;
-    }
-
-    .project-links a {
-      color: #7dd3fc;
-    }
-
-    /* Contact */
-
-    .contact-card {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
-      gap: 1.4rem;
-      align-items: center;
-    }
-
-    .contact-box {
-      border-radius: var(--radius-lg);
-      background: linear-gradient(
-        135deg,
-        rgba(15, 23, 42, 0.96),
-        rgba(2, 6, 23, 0.98)
-      );
-      border: 1px solid rgba(30, 64, 175, 0.9);
-      padding: 1.2rem 1.15rem;
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.92);
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
-    .contact-row {
+    .hero-cta {
+      margin-top: 1.25rem;
       display: flex;
       flex-wrap: wrap;
       gap: 0.7rem;
-      margin-top: 0.7rem;
-    }
-
-    .contact-pill {
-      border-radius: 999px;
-      padding: 0.32rem 0.75rem;
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.55);
-      font-size: 0.8rem;
-      display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
     }
 
-    .contact-pill span.icon {
-      font-size: 0.9rem;
+    .meta-row {
+      margin-top: 1.2rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      max-width: 640px;
+    }
+    .meta {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 14px;
+      padding: 0.75rem 0.75rem;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset;
+    }
+    .meta .label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+    .meta .value {
+      margin-top: 0.25rem;
+      font-weight: 750;
+      font-size: 0.92rem;
+      color: var(--text);
+      letter-spacing: -0.01em;
     }
 
-    .contact-hint {
+    /* Right hero card */
+    .profile-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+      padding: 1.15rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: radial-gradient(circle at 20% 0, rgba(56,189,248,0.20), transparent 55%),
+                  radial-gradient(circle at 85% 25%, rgba(168,85,247,0.14), transparent 55%);
+      opacity: 0.95;
+      pointer-events: none;
+    }
+    .profile-card > * { position: relative; z-index: 1; }
+
+    .pc-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+    .pc-top .name {
+      font-weight: 850;
+      letter-spacing: -0.01em;
+      font-size: 1.05rem;
+    }
+    .pc-top .role {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.1rem;
+    }
+
+    .pc-mini {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.55rem;
+    }
+    .pc-pill {
+      border: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.10);
+      border-radius: 14px;
+      padding: 0.7rem 0.75rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+    [data-theme="light"] .pc-pill { background: rgba(2, 6, 23, 0.03); }
+
+    .pc-pill .k {
+      color: var(--muted2);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .pc-pill .v {
+      margin-top: 0.18rem;
+      font-weight: 780;
+      font-size: 0.92rem;
+    }
+
+    .pc-note {
+      color: var(--muted);
+      font-size: 0.92rem;
+      padding: 0.25rem 0.1rem 0;
+    }
+
+    /* Cards / grids */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; }
+
+    .card {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 1.05rem 1.05rem;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset;
+    }
+
+    .card h3 {
+      font-size: 1.02rem;
+      letter-spacing: -0.01em;
+      font-weight: 820;
+      margin-bottom: 0.45rem;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 0.55rem;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.35rem;
+    }
+    .chip {
       font-size: 0.78rem;
-      color: #6b7280;
-      margin-top: 0.6rem;
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--muted);
     }
-
-    /* Footer */
-
-    footer {
-      border-top: 1px solid rgba(31, 41, 55, 0.9);
-      padding: 1.2rem 0 1.5rem;
-      font-size: 0.78rem;
-      color: #6b7280;
+    .chip.soft {
+      border-color: rgba(56, 189, 248, 0.45);
+      background: rgba(56, 189, 248, 0.10);
+      color: rgba(224, 242, 254, 0.95);
     }
+    [data-theme="light"] .chip.soft { color: rgba(2, 6, 23, 0.82); }
 
-    footer .footer-inner {
+    /* Cover letter block */
+    .letter {
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border-radius: var(--radius-xl);
+      padding: 1.15rem 1.15rem;
+      box-shadow: var(--shadow2);
+    }
+    .letter .top {
       display: flex;
       justify-content: space-between;
       gap: 0.8rem;
+      align-items: flex-start;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .letter .top .small {
+      color: var(--muted2);
+      font-size: 0.85rem;
+    }
+    .letter pre {
+      white-space: pre-wrap;
+      font-family: var(--font);
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.7;
+    }
+
+    .copy-row {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 0.85rem;
+    }
+
+    /* Experience timeline */
+    .timeline { display: grid; gap: 0.85rem; }
+    .role {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 0.95rem 1rem;
+      display: grid;
+      gap: 0.55rem;
+    }
+    .role .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+    .role .title {
+      font-size: 1.0rem;
+      font-weight: 860;
+      letter-spacing: -0.01em;
+    }
+    .role .company { color: var(--muted); font-size: 0.92rem; }
+    .role .date { color: var(--muted2); font-size: 0.88rem; }
+    .bullets { margin-top: 0.15rem; display: grid; gap: 0.35rem; }
+    .bullets li {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 10px 1fr;
+      gap: 0.55rem;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+    .bullets li span.dot {
+      width: 7px; height: 7px; border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      margin-top: 0.52rem;
+      box-shadow: 0 0 0 4px rgba(56,189,248,0.08);
+    }
+
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; }
+    .project {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow2);
+      padding: 1rem 1rem 1.05rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .project::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background:
+        radial-gradient(circle at 15% 0, rgba(56,189,248,0.16), transparent 55%),
+        radial-gradient(circle at 85% 25%, rgba(34,197,94,0.11), transparent 60%);
+      opacity: 0.95;
+      pointer-events: none;
+    }
+    .project > * { position: relative; z-index: 1; }
+    .project h3 { font-size: 1.05rem; font-weight: 860; letter-spacing: -0.01em; }
+    .project .tagline { margin-top: 0.25rem; color: var(--muted2); font-size: 0.88rem; }
+    .project .desc { margin-top: 0.55rem; color: var(--muted); font-size: 0.94rem; }
+    .project .meta { margin-top: 0.65rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    /* Contact */
+    .contact {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+      gap: 1.1rem;
+      align-items: start;
+    }
+    .contact .box {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: var(--radius-xl);
+      padding: 1.05rem;
+      box-shadow: var(--shadow2);
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 0.7rem; }
+    .pill {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .pill a { color: var(--text); }
+    .pill .icon { font-size: 0.95rem; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted2);
+      font-size: 0.84rem;
+      padding: 1.35rem 0 1.55rem;
+    }
+    footer .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
       flex-wrap: wrap;
     }
 
+    /* Utilities */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0);
+      border: 0;
+    }
+
+    /* Reveal animation */
+    .reveal { opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+
     /* Responsive */
-
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: minmax(0, 1.2fr);
-      }
-
-      .hero-right {
-        justify-content: flex-start;
-      }
-
-      .contact-card {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .menu-btn { display: inline-flex; }
+      .nav-actions { min-width: auto; }
+      .meta-row { grid-template-columns: 1fr; max-width: 520px; }
+      .contact { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 760px) {
-      .nav-links {
-        display: none;
-      }
-
-      main {
-        padding-top: 1.5rem;
-      }
-
-      section {
-        padding: 2.5rem 0;
-      }
-
-      .grid-2,
-      .project-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-card {
-        max-width: 100%;
-      }
+      .grid-2, .grid-3, .projects { grid-template-columns: 1fr; }
+      section { padding: 2.7rem 0; }
     }
+
+    /* Mobile drawer */
+    .drawer {
+      display: none;
+      border-top: 1px solid var(--border);
+      padding: 0.75rem 0 1rem;
+    }
+    .drawer a {
+      display: block;
+      padding: 0.65rem 0.2rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      border-bottom: 1px dashed rgba(255,255,255,0.10);
+    }
+    [data-theme="light"] .drawer a { border-bottom: 1px dashed rgba(2,6,23,0.10); }
+    .drawer a:last-child { border-bottom: none; }
+    .drawer a:hover { color: var(--text); }
+    .drawer.open { display: block; }
+
+
+    /* Modal */
+    .modal-overlay{
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      background: rgba(0,0,0,0.60);
+      backdrop-filter: blur(10px);
+      z-index: 120;
+    }
+    [data-theme="light"] .modal-overlay{ background: rgba(2,6,23,0.35); }
+
+    .modal-overlay.open{ display: flex; }
+
+    .modal{
+      width: 100%;
+      max-width: 860px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    [data-theme="light"] .modal{
+      background: linear-gradient(145deg, rgba(255,255,255,0.92), rgba(255,255,255,0.80));
+    }
+
+    .modal-head{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.9rem;
+      padding: 1rem 1.05rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-title{
+      font-weight: 880;
+      letter-spacing: -0.02em;
+      font-size: 1.15rem;
+    }
+    .modal-sub{
+      margin-top: 0.2rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .modal-close{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+    .modal-close:hover{
+      background: rgba(255,255,255,0.06);
+      border-color: var(--border2);
+      box-shadow: var(--shadow2);
+    }
+
+    .modal-body{
+      padding: 1.05rem;
+    }
+    .modal-grid{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+    @media (max-width: 900px){
+      .modal-grid{ grid-template-columns: 1fr; }
+    }
+
+    .modal-card{
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 0.95rem;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset;
+    }
+
+    .modal-label{
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+    .modal-value{
+      margin-top: 0.35rem;
+      font-weight: 820;
+      letter-spacing: -0.01em;
+      font-size: 1.0rem;
+    }
+    .modal-link{
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .modal-actions{
+      margin-top: 0.75rem;
+      display: flex;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .modal-note{
+      margin-top: 0.95rem;
+      padding: 0.85rem 0.9rem;
+      border-radius: var(--radius-lg);
+      border: 1px dashed rgba(56,189,248,0.45);
+      background: rgba(56,189,248,0.10);
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
   </style>
 </head>
+
 <body>
-  <div class="page">
-    <!-- NAVBAR -->
-    <header>
-      <div class="container nav">
-        <div class="brand">
-          <div class="brand-avatar">DM</div>
-          <div class="brand-text">
-            <span class="brand-name">Dinesh M</span>
-            <span class="brand-role">Mobile Applications Developer</span>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <div class="avatar"><div>DM</div></div>
+        <div class="brand-text">
+          <span class="brand-name">Dinesh M</span>
+          <span class="brand-role">Senior Mobile Application Developer</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#cover">Cover Letter</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#domains">Domains</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer">
+          <span class="icon">☰</span> Menu
+        </button>
+
+        <button class="btn" id="themeBtn" aria-label="Toggle theme">
+          <span class="icon">🌓</span> Theme
+        </button>
+
+        <button class="btn" id="demoBtn" type="button">
+          <span class="icon">🎬</span> Demo
+        </button>
+
+        <button class="btn btn-primary" id="hireMeBtn" type="button">
+          <span class="icon">✉️</span> Hire me
+        </button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="drawer" id="drawer" aria-label="Mobile navigation">
+        <a href="#about">About</a>
+        <a href="#cover">Cover Letter</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#domains">Domains</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="container">
+
+      <!-- HERO / ABOUT -->
+      <section id="about" class="reveal">
+        <div class="hero">
+          <div>
+            <div class="kicker"><span class="dot"></span> iOS · Android · Flutter · React Native</div>
+            <h1>
+              Building <span class="grad">premium mobile products</span> that scale —
+              fast, reliable, and production-ready.
+            </h1>
+
+            <p>
+              I’m a Senior Mobile Application Developer with <strong>11+ years</strong> of experience across
+              native iOS (Swift/SwiftUI), Android (Kotlin/Java), Flutter (Dart), and React Native.
+              I deliver end-to-end apps with clean architecture, performance optimization, and real-time features
+              like chat, WebRTC audio/video calling, BLE/IoT integrations, and Firebase-backed systems.
+            </p>
+
+            <div class="badges">
+              <span class="badge accent">11+ years experience</span>
+              <span class="badge">Tech Lead · 11+ yrs delivery</span>
+              <span class="badge">WebRTC · BLE/IoT · Firebase</span>
+              <span class="badge">E-commerce · Social · B2B</span>
+            </div>
+
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#projects"><span class="icon">⚡</span> View projects</a>
+              <a class="btn" href="#cover"><span class="icon">📝</span> View cover letter</a>
+              <button class="btn" id="copyPortfolioBtn"><span class="icon">🔗</span> Copy portfolio link</button>
+            </div>
+
+            <div class="meta-row">
+              <div class="meta">
+                <div class="label">Location</div>
+                <div class="value">India (IST) · Remote-friendly</div>
+              </div>
+              <div class="meta">
+                <div class="label">Core stack</div>
+                <div class="value">Swift · Kotlin · Dart · React Native</div>
+              </div>
+              <div class="meta">
+                <div class="label">Focus</div>
+                <div class="value">Real-time · Performance · Maintainability</div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="profile-card" aria-label="Profile summary card">
+            <div class="pc-top">
+              <div>
+                <div class="name">Dinesh M</div>
+                <div class="role">Senior Mobile Application Developer</div>
+              </div>
+              <span class="badge accent">Available</span>
+            </div>
+
+            <div class="pc-mini">
+              <div class="pc-pill">
+                <div>
+                  <div class="k">Specialties</div>
+                  <div class="v">Native & Hybrid Mobile · Web · WebRTC · BLE/IoT · Firebase</div>
+                </div>
+                <div class="icon" aria-hidden="true">🧩</div>
+              </div>
+
+              <div class="pc-pill">
+                <div>
+                  <div class="k">Delivery style</div>
+                  <div class="v">Clean architecture · Store-ready releases</div>
+                </div>
+                <div class="icon" aria-hidden="true">🚀</div>
+              </div>
+
+              <div class="pc-pill">
+                <div>
+                  <div class="k">Platforms</div>
+                  <div class="v">iOS · Android · Flutter · React Native</div>
+                </div>
+                <div class="icon" aria-hidden="true">📱</div>
+              </div>
+            </div>
+
+            <div class="pc-note">
+              Portfolio:
+              <a href="https://share2dinesh93.github.io/dinesh-portfolio/" target="_blank" rel="noreferrer"
+                 style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">
+                share2dinesh93.github.io/dinesh-portfolio
+              </a>
+            </div>
+
+            <div class="hero-cta" style="margin-top: 0.2rem;">
+              <a class="btn" href="#contact"><span class="icon">📞</span> Contact</a>
+              <button class="btn" id="copyEmailBtn"><span class="icon">📋</span> Copy email</button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- COVER LETTER -->
+      <section id="cover" class="reveal">
+        <div class="section-head">
+          <div class="kicker"><span class="dot"></span> Proposal-ready</div>
+          <h2 class="title">Cover letter</h2>
+          <p class="subtitle">
+            Copy/paste this into Upwork, email, or client proposals. Edit the first line with the client name/project.
+          </p>
+        </div>
+
+        <div class="letter">
+          <div class="top">
+            <div>
+              <strong style="font-size: 1.05rem;">Cover Note (General)</strong><br />
+              <span class="small">Tone: professional · concise · client-focused</span>
+            </div>
+            <div class="small">Last updated: <span id="updatedDate"></span></div>
+          </div>
+
+          <pre id="coverText">Dear Client,
+
+I’m a Senior Mobile Application Developer with 11+ years of experience building scalable, high-performance mobile apps across iOS (Swift/SwiftUI), Android (Kotlin/Java), Flutter (Dart), and React Native.
+
+I specialize in delivering production-ready applications with clean architecture, optimized performance, and seamless user experience—especially for real-time systems (chat, WebRTC audio/video calling), Firebase-backed apps, and BLE/IoT integrations.
+
+What you can expect from me:
+• Clear communication and quick turnaround
+• Clean, maintainable architecture (MVC/MVVM, modular code)
+• Strong API integration, offline-first support when required
+• Secure authentication, push notifications (FCM/APNs), and payment integration
+• Reliable store-ready releases and long-term maintenance
+
+Portfolio:
+https://share2dinesh93.github.io/dinesh-portfolio/
+
+If you share your requirements (features, timeline, and preferred tech), I can propose a clear plan and start immediately.
+
+Best regards,
+Dinesh M.</pre>
+
+          <div class="copy-row">
+            <button class="btn btn-primary" id="copyCoverBtn"><span class="icon">📋</span> Copy cover letter</button>
+            <button class="btn" id="copyShortCoverBtn"><span class="icon">⚡</span> Copy short version</button>
           </div>
         </div>
-        <nav class="nav-links">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
-          <a href="#domains">Domains</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </div>
-    </header>
+      </section>
 
-    <main>
-      <div class="container">
-        <!-- HERO -->
-        <section id="about">
-          <div class="hero">
-            <div>
-              <div class="section-kicker">Mobile · iOS · Android · Flutter</div>
-              <h1 class="hero-heading">
-                Building real-world
-                <span class="hero-highlight">mobile products</span> that scale.
-              </h1>
+      <!-- SKILLS -->
+      <section id="skills" class="reveal">
+        <div class="section-head">
+          <div class="kicker"><span class="dot"></span> Capabilities</div>
+          <h2 class="title">Technical skills</h2>
+          <p class="subtitle">
+            Strong mobile foundation with real-time systems, Firebase, and backend integrations. Focused on quality, performance, and maintainability.
+          </p>
+        </div>
 
-              <div class="hero-badge-row">
-                <span class="badge accent">11+ years experience</span>
-                <span class="badge">Technical Lead · Akkodis</span>
-                <span class="badge">iOS · Android · Flutter · Firebase</span>
-              </div>
-
-              <p class="hero-text">
-                I’m a Mobile Applications Developer focused on designing, building,
-                and launching production-ready apps across iOS, Android, and Flutter.
-                I’ve led projects end-to-end — from architecture and Bluetooth/IoT
-                integrations to chat, WebRTC audio/video calling, e-learning, and
-                smart home solutions.
-              </p>
-
-              <div class="hero-actions">
-                <a href="#projects" class="btn btn-primary">
-                  <span class="icon">⚡</span>
-                  <span>View selected projects</span>
-                </a>
-                <a href="#contact" class="btn btn-outline">
-                  <span class="icon">✉️</span>
-                  <span>Let’s work together</span>
-                </a>
-              </div>
-
-              <div class="hero-meta">
-                <div class="hero-meta-item">
-                  <span class="hero-meta-label">Location</span>
-                  <span class="hero-meta-value">India (IST)</span>
-                </div>
-                <div class="hero-meta-item">
-                  <span class="hero-meta-label">Role</span>
-                  <span class="hero-meta-value">
-                    Tech Lead · Mobile Applications
-                  </span>
-                </div>
-                <div class="hero-meta-item">
-                  <span class="hero-meta-label">Experience</span>
-                  <span class="hero-meta-value">11+ years</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="hero-right">
-              <aside class="hero-card" aria-label="Profile summary">
-                <div class="hero-card-header">
-                  <div class="hero-card-avatar">
-                    <div class="hero-card-avatar-inner">DM</div>
-                  </div>
-                  <div class="hero-card-title">
-                    <span class="hero-card-name">Dinesh M</span>
-                    <span class="hero-card-role">
-                      Mobile Applications Developer
-                    </span>
-                  </div>
-                </div>
-
-                <div class="hero-card-chip-row">
-                  <span class="hero-chip">Swift · Kotlin · Dart</span>
-                  <span class="hero-chip">Firebase · FCM</span>
-                  <span class="hero-chip">WebRTC · BLE · IoT</span>
-                </div>
-
-                <p class="hero-card-body">
-                  Designing and shipping apps that feel fast, reliable, and
-                  production-ready — with a strong focus on real-time features,
-                  Bluetooth integrations, and long-term maintainability.
-                </p>
-
-                <div class="hero-card-metrics">
-                  <div class="metric-card">
-                    <div class="metric-label">Experience</div>
-                    <div class="metric-value">11+ yrs</div>
-                  </div>
-                  <div class="metric-card">
-                    <div class="metric-label">Platforms</div>
-                    <div class="metric-value">iOS · Android · Flutter</div>
-                  </div>
-                  <div class="metric-card">
-                    <div class="metric-label">Domains</div>
-                    <div class="metric-value">Fintech · IoT · Comms</div>
-                  </div>
-                </div>
-              </aside>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Mobile platforms</h3>
+            <p>End-to-end development, architecture, performance, release management.</p>
+            <div class="chips">
+              <span class="chip soft">iOS · Swift · SwiftUI</span>
+              <span class="chip soft">Android · Kotlin · Java</span>
+              <span class="chip soft">Flutter · Dart</span>
+              <span class="chip soft">React Native</span>
+              <span class="chip">MVC · MVVM</span>
+              <span class="chip">Offline-first patterns</span>
             </div>
           </div>
-        </section>
 
-        <!-- SKILLS -->
-        <section id="skills">
-          <div class="section-header">
-            <div class="section-kicker">Capabilities</div>
-            <h2 class="section-title">Technical skills at a glance</h2>
-            <p class="section-subtitle">
-              A cross-platform stack across native iOS, Android, and Flutter — with
-              Firebase, real-time communications, and production deployment.
+          <div class="card">
+            <h3>Real-time & integrations</h3>
+            <p>Communication features and production integrations that scale.</p>
+            <div class="chips">
+              <span class="chip soft">WebRTC (Audio/Video)</span>
+              <span class="chip soft">Firebase Realtime DB</span>
+              <span class="chip">REST APIs</span>
+              <span class="chip">Payments</span>
+              <span class="chip">FCM · APNs</span>
+              <span class="chip">BLE · IoT</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Backend & cloud</h3>
+            <p>Modern backend stacks for mobile apps (build + integrate + deploy).</p>
+            <div class="chips">
+              <span class="chip soft">Firebase (Auth/DB/Functions)</span>
+              <span class="chip soft">Node.js</span>
+              <span class="chip soft">Django (Python)</span>
+              <span class="chip">Security best practices</span>
+              <span class="chip">Role-based access</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Tools & workflow</h3>
+            <p>Production workflow with strong debugging and delivery discipline.</p>
+            <div class="chips">
+              <span class="chip soft">Xcode</span>
+              <span class="chip soft">Android Studio</span>
+              <span class="chip soft">VS Code</span>
+              <span class="chip">Git</span>
+              <span class="chip">CI/CD</span>
+              <span class="chip">Postman</span>
+              <span class="chip">Agile/Scrum</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="reveal">
+        <div class="section-head">
+          <div class="kicker"><span class="dot"></span> Career</div>
+          <h2 class="title">Experience</h2>
+          <p class="subtitle">A track record of delivering real-world apps with ownership from design to store release.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="role">
+            <div class="row">
+              <div>
+                <div class="title">Technical Lead (Flutter · iOS · Android)</div>
+                <div class="company">Client Projects · Product Delivery</div>
+              </div>
+              <div class="date">Oct 2023 – Present</div>
+            </div>
+            <ul class="bullets">
+              <li><span class="dot"></span><span>Lead architecture, development, testing, and App Store/Play Store releases for cross-platform applications.</span></li>
+              <li><span class="dot"></span><span>Own performance improvements, code quality reviews, and production stability.</span></li>
+              <li><span class="dot"></span><span>Collaborate with stakeholders and QA to deliver features with clear acceptance criteria.</span></li>
+            </ul>
+          </div>
+
+          <div class="role">
+            <div class="row">
+              <div>
+                <div class="title">Mobile Application Developer (iOS · Android)</div>
+                <div class="company">Client Projects · Product Delivery</div>
+              </div>
+              <div class="date">Nov 2022 – Jun 2023</div>
+            </div>
+            <ul class="bullets">
+              <li><span class="dot"></span><span>Built native iOS and Android features with a focus on performance and maintainability.</span></li>
+              <li><span class="dot"></span><span>Improved code reuse, stability, and delivery quality across releases.</span></li>
+            </ul>
+          </div>
+
+          <div class="role">
+            <div class="row">
+              <div>
+                <div class="title">Project Manager / Mobile (iOS · Android)</div>
+                <div class="company">Client Projects · Product Delivery</div>
+              </div>
+              <div class="date">Nov 2018 – Oct 2022</div>
+            </div>
+            <ul class="bullets">
+              <li><span class="dot"></span><span>Owned delivery, scope, planning, and client communication for mobile projects.</span></li>
+              <li><span class="dot"></span><span>Led teams across development, testing, and release cycles; ensured quality through reviews.</span></li>
+            </ul>
+          </div>
+
+          <div class="role">
+            <div class="row">
+              <div>
+                <div class="title">Mobile Application Developer (iOS · Android)</div>
+                <div class="company">Client Projects · Product Delivery</div>
+              </div>
+              <div class="date">Oct 2014 – Nov 2018</div>
+            </div>
+            <ul class="bullets">
+              <li><span class="dot"></span><span>Developed and launched multiple iOS and Android applications from scratch to store.</span></li>
+              <li><span class="dot"></span><span>Focused on bug fixing, performance tuning, and reusable module design.</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="reveal">
+        <div class="section-head">
+          <div class="kicker"><span class="dot"></span> Selected work</div>
+          <h2 class="title">Projects</h2>
+          <p class="subtitle">A mix of communication, IoT, healthcare, and booking systems—built for production.</p>
+        </div>
+
+        <div class="projects">
+          <article class="project">
+            <h3>StayTouch</h3>
+            <div class="tagline">Real-time messenger with chat + audio/video calls</div>
+            <div class="desc">
+              Secure communication app for communities with rich media, offline support, push notifications, and WebRTC calling.
+            </div>
+            <div class="meta">
+              <span class="chip soft">WebRTC</span>
+              <span class="chip soft">Firebase · FCM</span>
+              <span class="chip">iOS · Android</span>
+              <span class="chip">Offline storage</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <h3>TechAssist</h3>
+            <div class="tagline">Sensor configuration & diagnostics over Bluetooth (BLE)</div>
+            <div class="desc">
+              Bluetooth-enabled app for installation, verification, and maintenance workflows with offline storage and notifications.
+            </div>
+            <div class="meta">
+              <span class="chip soft">BLE · IoT</span>
+              <span class="chip">Android · iOS</span>
+              <span class="chip">SQLite · Room</span>
+              <span class="chip">Firebase</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <h3>Booking Application</h3>
+            <div class="tagline">Ticket booking (like bus booking) with seat selection + payments</div>
+            <div class="desc">
+              Route search, live seat availability, secure checkout, booking history, ticket generation, and admin-driven route/pricing management.
+            </div>
+            <div class="meta">
+              <span class="chip soft">Payments</span>
+              <span class="chip">Seat layout</span>
+              <span class="chip">Order tracking</span>
+              <span class="chip">REST APIs</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <h3>My Medicine</h3>
+            <div class="tagline">Online pharmacy: browse, cart, checkout, tracking, and chat</div>
+            <div class="desc">
+              Medicine browsing + prescription uploads, secure checkout, real-time order updates, and in-app chat support for pharmacy communication.
+            </div>
+            <div class="meta">
+              <span class="chip soft">E-commerce</span>
+              <span class="chip soft">Chat</span>
+              <span class="chip">Order tracking</span>
+              <span class="chip">Push notifications</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- DOMAINS -->
+      <section id="domains" class="reveal">
+        <div class="section-head">
+          <div class="kicker"><span class="dot"></span> Domain strength</div>
+          <h2 class="title">Industries I’ve built for</h2>
+          <p class="subtitle">Breadth across business models, with strong real-time and integration-heavy delivery.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Communication & Social</h3>
+            <p>Chat, calls, feeds, media, presence, notifications.</p>
+            <div class="chips">
+              <span class="chip soft">WebRTC</span>
+              <span class="chip">Realtime DB</span>
+              <span class="chip">Push</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>IoT / Smart devices</h3>
+            <p>BLE pairing, device state, diagnostics, remote monitoring.</p>
+            <div class="chips">
+              <span class="chip soft">BLE</span>
+              <span class="chip">State sync</span>
+              <span class="chip">Alerts</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>E-commerce & B2B</h3>
+            <p>Catalog, cart, checkout, order tracking, admin-driven content.</p>
+            <div class="chips">
+              <span class="chip soft">Payments</span>
+              <span class="chip">Tracking</span>
+              <span class="chip">Role access</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="reveal">
+        <div class="section-head">
+          <div class="kicker"><span class="dot"></span> Contact</div>
+          <h2 class="title">Let’s work together</h2>
+          <p class="subtitle">
+            Open to Senior Mobile Developer / Tech Lead roles, and freelance projects (especially real-time, IoT, or integration-heavy apps).
+          </p>
+        </div>
+
+        <div class="contact">
+          <div class="box">
+            <p style="color: var(--muted); font-size: 0.98rem;">
+              If you share your requirements (features, timeline, and preferred tech), I can propose a clear plan and start quickly.
             </p>
-          </div>
 
-          <div class="grid-2">
-            <article class="card">
-              <h3>Mobile development</h3>
-              <p>
-                End-to-end development of production apps for iOS, Android, and
-                Flutter with clean architecture, performance optimization, and
-                smooth user experience.
-              </p>
-              <div class="chip-row">
-                <span class="chip soft">Swift · Objective-C</span>
-                <span class="chip soft">Kotlin · Java</span>
-                <span class="chip soft">Flutter · Dart</span>
-                <span class="chip">MVC · MVVM</span>
-                <span class="chip">UI/UX implementation</span>
-              </div>
-            </article>
-
-            <article class="card">
-              <h3>Cloud, backend & tooling</h3>
-              <p>
-                Real-time features, push notifications, and backend integrations
-                powered by Firebase and modern tooling.
-              </p>
-              <div class="chip-row">
-                <span class="chip soft">Firebase (DB, Auth, FCM)</span>
-                <span class="chip soft">WebRTC (audio/video)</span>
-                <span class="chip">REST API integration</span>
-                <span class="chip">SQL · SQLite · Room</span>
-                <span class="chip">Git · GitLab · Bitbucket</span>
-                <span class="chip">CI/CD · Agile · Scrum</span>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <!-- EXPERIENCE -->
-        <section id="experience">
-          <div class="section-header">
-            <div class="section-kicker">Experience</div>
-            <h2 class="section-title">11+ years building mobile products</h2>
-          </div>
-
-          <div class="grid-2">
-            <div>
-              <div class="experience-item">
-                <div class="experience-header">
-                  <div>
-                    <div class="experience-role">
-                      Technical Lead (Flutter · iOS · Android)
-                    </div>
-                    <div class="experience-company">Akkodis (AKTPL) · Bengaluru</div>
-                  </div>
-                  <div class="experience-date">Oct 2023 – Present</div>
-                </div>
-                <ul class="list">
-                  <li>
-                    <span class="list-bullet"></span>
-                    <span>
-                      Lead design, development, testing, and deployment of Flutter
-                      applications for both iOS & Android.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="list-bullet"></span>
-                    <span>
-                      Implement UI components and app architecture using best-practice
-                      Flutter & Dart workflows.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="list-bullet"></span>
-                    <span>
-                      Own CI/CD reviews, quality, and App Store / Play Store release
-                      processes.
-                    </span>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="experience-item">
-                <div class="experience-header">
-                  <div>
-                    <div class="experience-role">
-                      Mobile Application Developer (iOS · Android)
-                    </div>
-                    <div class="experience-company">Launchpad · Australia</div>
-                  </div>
-                  <div class="experience-date">Nov 2022 – Jun 2023</div>
-                </div>
-                <ul class="list">
-                  <li>
-                    <span class="list-bullet"></span>
-                    <span>
-                      Designed and built native iOS and Android apps using full-stack
-                      tools and best practices.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="list-bullet"></span>
-                    <span>
-                      Ensured high app performance and stability, improving code
-                      reusability and maintainability.
-                    </span>
-                  </li>
-                </ul>
-              </div>
+            <div class="pill-row">
+              <div class="pill"><span class="icon">✉️</span> <a href="mailto:share2dinesh93@gmail.com">share2dinesh93@gmail.com</a></div>
+              <div class="pill"><span class="icon">🔗</span> <a href="https://www.linkedin.com/in/dinesh-m-a9ba1166/" target="_blank" rel="noreferrer">LinkedIn</a></div>
+              <div class="pill"><span class="icon">🌐</span> <a href="https://share2dinesh93.github.io/dinesh-portfolio/" target="_blank" rel="noreferrer">Portfolio</a></div>
             </div>
 
-            <div>
-              <div class="experience-item">
-                <div class="experience-header">
-                  <div>
-                    <div class="experience-role">
-                      Project Manager · Mobile (iOS · Android)
-                    </div>
-                    <div class="experience-company">
-                      Asareri Technology · Chennai
-                    </div>
-                  </div>
-                  <div class="experience-date">Nov 2018 – Oct 2022</div>
-                </div>
-                <ul class="list">
-                  <li>
-                    <span class="list-bullet"></span>
-                    <span>
-                      Planned projects, defined scope, and aligned goals with clients
-                      and stakeholders.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="list-bullet"></span>
-                    <span>
-                      Coordinated cross-functional teams and owned delivery quality and
-                      timelines.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="list-bullet"></span>
-                    <span>
-                      Performed code reviews, testing, and quality assurance within the
-                      CI/CD pipeline.
-                    </span>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="experience-item">
-                <div class="experience-header">
-                  <div>
-                    <div class="experience-role">
-                      Mobile Application Developer (iOS · Android)
-                    </div>
-                    <div class="experience-company">
-                      Asareri Technology · Chennai
-                    </div>
-                  </div>
-                  <div class="experience-date">Oct 2014 – Nov 2018</div>
-                </div>
-                <ul class="list">
-                  <li>
-                    <span class="list-bullet"></span>
-                    <span>
-                      Developed and launched multiple iOS and Android applications from
-                      scratch to store.
-                    </span>
-                  </li>
-                  <li>
-                    <span class="list-bullet"></span>
-                    <span>
-                      Focused on performance, bug fixing, and reusability across app
-                      modules.
-                    </span>
-                  </li>
-                </ul>
-              </div>
+            <div class="copy-row">
+              <button class="btn" id="copyContactBtn"><span class="icon">📋</span> Copy contact</button>
+              <a class="btn btn-primary" href="mailto:share2dinesh93@gmail.com?subject=Project%20Inquiry%20-%20Mobile%20App"><span class="icon">🚀</span> Email me</a>
             </div>
           </div>
-        </section>
 
-        <!-- PROJECTS -->
-        <section id="projects">
-          <div class="section-header">
-            <div class="section-kicker">Selected work</div>
-            <h2 class="section-title">Projects & product highlights</h2>
-            <p class="section-subtitle">
-              A mix of communication, IoT, e-learning, and productivity apps — with
-              Bluetooth, WebRTC, and real-time features.
-            </p>
+          <div class="box">
+            <h3 style="font-size: 1.05rem; font-weight: 850; margin-bottom: 0.35rem;">Quick profile</h3>
+            <p style="color: var(--muted); font-size: 0.95rem;">
+              <strong>Experience:</strong> 11+ years<br />
+              <strong>Primary stack:</strong> Swift/SwiftUI, Kotlin/Java, Flutter, React Native<br />
+              <strong>Backend:</strong> Firebase, Node.js, Django (Python)<br />
+              <strong>Specialties:</strong> Native & Hybrid Mobile · Web · WebRTC · BLE/IoT · Realtime systems · Payments · Push</p>
           </div>
+        </div>
+      </section>
 
-          <div class="project-grid">
-            <!-- StayTouch -->
-            <article class="project-card">
-              <h3 class="project-title">StayTouch</h3>
-              <p class="project-tagline">
-                Real-time messenger with chat + audio/video calls.
-              </p>
-              <p class="project-desc">
-                Smart and secure messenger to communicate within communities, exchange
-                contacts, and stay connected using chat, audio/video calls, and rich
-                media.
-              </p>
-              <p class="project-role">
-                <strong>Role:</strong> End-to-end development — design, coding, testing,
-                deployment, and store releases. Implemented offline storage, FCM push,
-                and WebRTC calling.
-              </p>
-              <div class="chip-row">
-                <span class="chip soft">Java · Swift</span>
-                <span class="chip soft">Firebase · FCM</span>
-                <span class="chip soft">WebRTC</span>
-                <span class="chip">Android Studio · Xcode</span>
-              </div>
-            </article>
+    </div>
+  </main>
 
-            <!-- TechAssist -->
-            <article class="project-card">
-              <h3 class="project-title">TechAssist</h3>
-              <p class="project-tagline">
-                Sensor configuration and diagnostics over Bluetooth.
-              </p>
-              <p class="project-desc">
-                Smart & secure app to communicate with sensors via Bluetooth for
-                installation, verification, and maintenance of hardware on trailers and
-                gateways.
-              </p>
-              <p class="project-role">
-                <strong>Role:</strong> Full lifecycle from design to deployment, with
-                offline storage (SQLite/Room/Firebase) and push notifications via FCM.
-              </p>
-              <div class="chip-row">
-                <span class="chip soft">Android · iOS</span>
-                <span class="chip soft">BLE · IoT</span>
-                <span class="chip">SQLite · Room</span>
-                <span class="chip">Firebase · FCM</span>
-              </div>
-            </article>
 
-            <!-- MyCheerTribe -->
-            <article class="project-card">
-              <h3 class="project-title">MyCheerTribe</h3>
-              <p class="project-tagline">
-                Community platform for cheer coaches & gym owners.
-              </p>
-              <p class="project-desc">
-                A dedicated app to share resources, tips, and inspiration, helping gym
-                owners run their business in a more organized and effective way.
-              </p>
-              <p class="project-role">
-                <strong>Role:</strong> Design, development, testing, deployment, offline
-                support, and FCM integration.
-              </p>
-              <div class="chip-row">
-                <span class="chip soft">Kotlin · Swift</span>
-                <span class="chip soft">Firebase</span>
-                <span class="chip">Bitbucket</span>
-              </div>
-            </article>
-
-            <!-- EquiCare -->
-            <article class="project-card">
-              <h3 class="project-title">EquiCare</h3>
-              <p class="project-tagline">
-                Horse health management & treatment scheduling.
-              </p>
-              <p class="project-desc">
-                App to track husbandry needs, treatments, health history, and
-                appointments with a flexible reminder and management calendar.
-              </p>
-              <p class="project-role">
-                <strong>Role:</strong> Full development cycle with offline storage and
-                push notifications.
-              </p>
-              <div class="chip-row">
-                <span class="chip soft">Kotlin · Swift</span>
-                <span class="chip soft">Firebase</span>
-                <span class="chip">Android Studio · Xcode</span>
-              </div>
-            </article>
-
-            <!-- OneRM -->
-            <article class="project-card">
-              <h3 class="project-title">OneRM</h3>
-              <p class="project-tagline">
-                Strength & workout tracking companion app.
-              </p>
-              <p class="project-desc">
-                Tracks user strength and workout activities, helping users monitor
-                progress and schedule training sessions.
-              </p>
-              <p class="project-role">
-                <strong>Role:</strong> Design, development, deployment, offline storage,
-                and Apple payments integration.
-              </p>
-              <div class="chip-row">
-                <span class="chip soft">Swift</span>
-                <span class="chip">SQLite · Firebase</span>
-                <span class="chip">Apple Payments</span>
-              </div>
-            </article>
-
-            <!-- Sensor & e-learning work -->
-            <article class="project-card">
-              <h3 class="project-title">Sensor & e-learning platforms</h3>
-              <p class="project-tagline">
-                US-based sensor apps & streaming e-learning solutions.
-              </p>
-              <p class="project-desc">
-                Worked on sensor-based apps with US clients (hardware integration via
-                BLE) and e-learning apps with video streaming, quizzes, and student
-                tracking.
-              </p>
-              <p class="project-role">
-                <strong>Role:</strong> Mobile development across iOS and Android,
-                integrating gateways, BLE, and streaming services.
-              </p>
-              <div class="chip-row">
-                <span class="chip soft">BLE · IoT</span>
-                <span class="chip">Video streaming</span>
-                <span class="chip">Education & training</span>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <!-- DOMAINS -->
-        <section id="domains">
-          <div class="section-header">
-            <div class="section-kicker">Domain coverage</div>
-            <h2 class="section-title">Industries I’ve built for</h2>
-          </div>
-
-          <div class="grid-2">
-            <article class="card">
-              <h3>E-commerce & Finance</h3>
-              <ul class="list">
-                <li>
-                  <span class="list-bullet"></span>
-                  <span>Product browsing, search, and cart flows.</span>
-                </li>
-                <li>
-                  <span class="list-bullet"></span>
-                  <span>Order tracking & personalized recommendations.</span>
-                </li>
-                <li>
-                  <span class="list-bullet"></span>
-                  <span>
-                    Payment integrations using payment SDKs and mobile payment flows.
-                  </span>
-                </li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <h3>Communication & Social</h3>
-              <ul class="list">
-                <li>
-                  <span class="list-bullet"></span>
-                  <span>
-                    Real-time chat with text, audio, video, and location sharing.
-                  </span>
-                </li>
-                <li>
-                  <span class="list-bullet"></span>
-                  <span>WebRTC-based audio/video calls.</span>
-                </li>
-                <li>
-                  <span class="list-bullet"></span>
-                  <span>Feeds, posts, likes, comments, and story-style updates.</span>
-                </li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <h3>Healthcare & E-learning</h3>
-              <ul class="list">
-                <li>
-                  <span class="list-bullet"></span>
-                  <span>Health status tracking with charts and visual insights.</span>
-                </li>
-                <li>
-                  <span class="list-bullet"></span>
-                  <span>Interactive learning modules with video and quizzes.</span>
-                </li>
-                <li>
-                  <span class="list-bullet"></span>
-                  <span>Live class streaming and progress tracking.</span>
-                </li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <h3>Smart Home / IoT</h3>
-              <ul class="list">
-                <li>
-                  <span class="list-bullet"></span>
-                  <span>Device pairing & remote control over Bluetooth (BLE).</span>
-                </li>
-                <li>
-                  <span class="list-bullet"></span>
-                  <span>Real-time device state monitoring & alerts.</span>
-                </li>
-                <li>
-                  <span class="list-bullet"></span>
-                  <span>Cloud-based synchronization and data logging.</span>
-                </li>
-              </ul>
-            </article>
-          </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact">
-          <div class="section-header">
-            <div class="section-kicker">Contact</div>
-            <h2 class="section-title">Let’s build something</h2>
-            <p class="section-subtitle">
-              Open to roles as Senior Mobile Developer / Tech Lead for iOS, Android,
-              and Flutter projects, especially those involving real-time features,
-              communication, or IoT.
-            </p>
-          </div>
-
-          <div class="contact-card">
-            <div class="contact-box">
-              <p>
-                If you’d like to collaborate on a mobile product, discuss a
-                freelancing opportunity, or just talk about architecture and
-                real-time systems, feel free to reach out.
-              </p>
-              <div class="contact-row">
-                <!-- Replace with your real links -->
-                <div class="contact-pill">
-                  <span class="icon">✉️</span>
-                  <span>share2dinesh93@gmail.com</span>
-                </div>
-                <div class="contact-pill">
-                  <span class="icon">🔗</span>
-                  <span>https://www.linkedin.com/in/dinesh-m-a9ba1166/</span>
-                </div>
-                
-              </div>
-             
-            </div>
-
-            <div>
-              <article class="card">
-                <h3>Education</h3>
-                <p class="card-meta">B.Tech – Information Technology</p>
-                <p>
-                  Bachelor of Technology in Information Technology from PSNA College
-                  of Engineering & Technology, Dindigul.
-                </p>
-              </article>
-            </div>
-          </div>
-        </section>
+  <!-- CONTACT MODAL -->
+  <div class="modal-overlay" id="contactModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <div>
+          <div class="modal-title" id="modalTitle">Contact Dinesh</div>
+          <div class="modal-sub">Fastest way to start: send your requirements + timeline.</div>
+        </div>
+        <button class="modal-close" id="modalCloseBtn" aria-label="Close">✕</button>
       </div>
-    </main>
 
-    <footer>
-      <div class="container footer-inner">
-        <span>© <span id="year"></span> · Dinesh M · Mobile Applications Developer</span>
-        <span>Built with HTML & CSS · Host on GitHub Pages / Netlify / Vercel</span>
+      <div class="modal-body">
+        <div class="modal-grid">
+          <div class="modal-card">
+            <div class="modal-label">Email</div>
+            <div class="modal-value"><a class="modal-link" href="mailto:share2dinesh93@gmail.com?subject=Project%20Inquiry%20-%20Mobile%20App">share2dinesh93@gmail.com</a></div>
+            <div class="modal-actions">
+              <a class="btn btn-primary" href="mailto:share2dinesh93@gmail.com?subject=Project%20Inquiry%20-%20Mobile%20App"><span class="icon">✉️</span>Email</a>
+              <button class="btn" type="button" data-copy="share2dinesh93@gmail.com"><span class="icon">📋</span>Copy</button>
+            </div>
+          </div>
+
+          <div class="modal-card">
+            <div class="modal-label">WhatsApp</div>
+            <div class="modal-value"><a class="modal-link" target="_blank" rel="noreferrer"
+              href="https://wa.me/917200798409?text=Hi%20Dinesh%2C%20I%27d%20like%20to%20discuss%20a%20project.%20My%20requirements%20are%3A%20">+91 7200798409</a></div>
+            <div class="modal-actions">
+              <a class="btn btn-primary" target="_blank" rel="noreferrer"
+                 href="https://wa.me/917200798409?text=Hi%20Dinesh%2C%20I%27d%20like%20to%20discuss%20a%20project.%20My%20requirements%20are%3A%20"><span class="icon">💬</span>WhatsApp</a>
+              <button class="btn" type="button" data-copy="+91 7200798409"><span class="icon">📋</span>Copy</button>
+            </div>
+          </div>
+
+          <div class="modal-card">
+            <div class="modal-label">Call</div>
+            <div class="modal-value"><a class="modal-link" href="tel:+917010918780">+91 7010918780</a></div>
+            <div class="modal-actions">
+              <a class="btn btn-primary" href="tel:+917010918780"><span class="icon">📞</span>Call</a>
+              <button class="btn" type="button" data-copy="+91 7010918780"><span class="icon">📋</span>Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-note" id="modalContextNote">
+          <strong>Demo:</strong> I can share a quick demo walkthrough. Click any contact option and mention “Demo”.
+        </div>
       </div>
-    </footer>
+    </div>
   </div>
 
+  <footer>
+    <div class="container">
+      <div class="row">
+        <span>© <span id="year"></span> · Dinesh M · Senior Mobile Application Developer</span>
+        <span>Built with HTML/CSS · GitHub Pages / Netlify / Vercel</span>
+      </div>
+    </div>
+  </footer>
+
   <script>
-    // Set current year in footer
+    // ====== Helpers ======
+    function copyText(text) {
+      return navigator.clipboard.writeText(text).then(() => true).catch(() => false);
+    }
+
+    function toast(msg) {
+      // lightweight toast
+      const el = document.createElement("div");
+      el.textContent = msg;
+      el.style.position = "fixed";
+      el.style.left = "50%";
+      el.style.bottom = "22px";
+      el.style.transform = "translateX(-50%)";
+      el.style.background = "rgba(0,0,0,0.75)";
+      el.style.color = "white";
+      el.style.padding = "10px 14px";
+      el.style.borderRadius = "999px";
+      el.style.fontSize = "0.9rem";
+      el.style.border = "1px solid rgba(255,255,255,0.18)";
+      el.style.backdropFilter = "blur(10px)";
+      el.style.zIndex = "999";
+      el.style.boxShadow = "0 12px 30px rgba(0,0,0,0.35)";
+      document.body.appendChild(el);
+      setTimeout(() => { el.style.opacity = "0"; el.style.transition = "opacity .25s ease"; }, 1400);
+      setTimeout(() => el.remove(), 1750);
+    }
+
+    // ====== Footer year + updated date ======
     document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("updatedDate").textContent = new Date().toLocaleDateString(undefined, { year: "numeric", month: "short", day: "2-digit" });
+
+    // ====== Theme toggle (persist) ======
+    const themeBtn = document.getElementById("themeBtn");
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") document.documentElement.setAttribute("data-theme", "light");
+
+    themeBtn.addEventListener("click", () => {
+      const isLight = document.documentElement.getAttribute("data-theme") === "light";
+      if (isLight) {
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem("theme", "dark");
+        toast("Dark theme");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+        localStorage.setItem("theme", "light");
+        toast("Light theme");
+      }
+    });
+
+    // ====== Mobile drawer ======
+    const menuBtn = document.getElementById("menuBtn");
+    const drawer = document.getElementById("drawer");
+
+    menuBtn.addEventListener("click", () => {
+      const open = drawer.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+
+    // close drawer on link click
+    drawer.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        drawer.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // ====== Copy actions ======
+    const portfolioLink = "https://share2dinesh93.github.io/dinesh-portfolio/";
+    const email = "share2dinesh93@gmail.com";
+
+    document.getElementById("copyPortfolioBtn").addEventListener("click", async () => {
+      const ok = await copyText(portfolioLink);
+      toast(ok ? "Portfolio link copied" : "Copy failed");
+    });
+
+    document.getElementById("copyEmailBtn").addEventListener("click", async () => {
+      const ok = await copyText(email);
+      toast(ok ? "Email copied" : "Copy failed");
+    });
+
+    document.getElementById("copyCoverBtn").addEventListener("click", async () => {
+      const cover = document.getElementById("coverText").textContent;
+      const ok = await copyText(cover.trim());
+      toast(ok ? "Cover letter copied" : "Copy failed");
+    });
+
+    document.getElementById("copyShortCoverBtn").addEventListener("click", async () => {
+      const shortCover =
+`Dear Client,
+
+I’m a Senior Mobile Application Developer with 11+ years of experience in iOS (Swift/SwiftUI), Android (Kotlin/Java), Flutter, and React Native.
+
+I can build your app end-to-end with clean architecture, strong API integrations, secure auth, payments, push notifications, and real-time features (chat/WebRTC/BLE) when required.
+
+Portfolio: ${portfolioLink}
+
+Best regards,
+Dinesh M.`;
+      const ok = await copyText(shortCover.trim());
+      toast(ok ? "Short cover letter copied" : "Copy failed");
+    });
+
+    document.getElementById("copyContactBtn").addEventListener("click", async () => {
+      const contact =
+`Dinesh M
+Senior Mobile Application Developer
+Email: ${email}
+Portfolio: ${portfolioLink}
+LinkedIn: https://www.linkedin.com/in/dinesh-m-a9ba1166/`;
+      const ok = await copyText(contact.trim());
+      toast(ok ? "Contact copied" : "Copy failed");
+    });
+
+
+    // ====== Contact modal ======
+    const contactModal = document.getElementById("contactModal");
+    const modalCloseBtn = document.getElementById("modalCloseBtn");
+    const hireMeBtn = document.getElementById("hireMeBtn");
+    const demoBtn = document.getElementById("demoBtn");
+    const modalContextNote = document.getElementById("modalContextNote");
+
+    function openModal(context) {
+      if (context === "demo") {
+        modalContextNote.innerHTML = "<strong>Demo request:</strong> I can share a quick demo walkthrough. Click any contact option and mention “Demo”.";
+      } else {
+        modalContextNote.innerHTML = "<strong>Project inquiry:</strong> Share your features + timeline, and I’ll respond with a clear plan and estimate.";
+      }
+
+      contactModal.classList.add("open");
+      contactModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      contactModal.classList.remove("open");
+      contactModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    if (hireMeBtn) hireMeBtn.addEventListener("click", () => openModal("hire"));
+    if (demoBtn) demoBtn.addEventListener("click", () => openModal("demo"));
+
+    // close on overlay click
+    contactModal.addEventListener("click", (e) => {
+      if (e.target === contactModal) closeModal();
+    });
+    modalCloseBtn.addEventListener("click", closeModal);
+
+    // close on ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && contactModal.classList.contains("open")) closeModal();
+    });
+
+    // copy buttons inside modal
+    contactModal.querySelectorAll("[data-copy]").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const text = btn.getAttribute("data-copy");
+        const ok = await copyText(text);
+        toast(ok ? "Copied" : "Copy failed");
+      });
+    });
+
+
+    // ====== Reveal on scroll ======
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add("show");
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
   </script>
 </body>
 </html>
